@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AluraFlix.Controller
@@ -12,19 +13,25 @@ namespace AluraFlix.Controller
     [ApiController]
     public class VideoController : ControllerBase
     {
-        [HttpGet]
-        [Route("videos")]
-        public async Task<IActionResult> GetAsync([FromServices] AppDbContext context)
+        [HttpGet("videos")]
+        public async Task<IActionResult> GetAsync([FromServices] AppDbContext context, [FromQuery] string search)
         {
-            var videos = await context.Videos.ToListAsync();
-            return Ok(videos);
+            IQueryable<Video> query = context.Videos.Include(x => x.Categoria);
+
+            if (search != null)
+            {
+                query = query.Where(video => video.Titulo.ToLower().Contains(search.ToLower()));
+            }
+
+            return Ok(query.ToList());
+
         }
 
         [HttpGet]
         [Route("videos/{id}")]
         public async Task<IActionResult> GetByIdAsync([FromServices] AppDbContext context, int id)
         {
-            var videos = await context.Videos.FirstOrDefaultAsync(x => x.Id == id);
+            var videos = await context.Videos.Include(x=>x.Categoria).FirstOrDefaultAsync(x => x.Id == id);
             return videos == null ? NotFound() : Ok(videos);
         }
 
@@ -38,7 +45,9 @@ namespace AluraFlix.Controller
             {
                 Titulo = video.Titulo,
                 Descricao = video.Descricao,
-                Url = video.Url
+                Url = video.Url,
+                CategoriaId = video.CategoriaId ?? 1
+
             };
 
             try
