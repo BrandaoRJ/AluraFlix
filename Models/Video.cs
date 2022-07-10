@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AluraFlix.Models
+namespace AluraFlix.API.Models
 {
     public class Video
     {

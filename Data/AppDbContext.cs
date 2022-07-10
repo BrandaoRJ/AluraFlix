@@ -1,14 +1,14 @@
-﻿using AluraFlix.Models;
+﻿using AluraFlix.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AluraFlix.Data
+namespace AluraFlix.API.Data
 {
     //Representação do Banco de Dados, onde ocorre o mapeamento das entidades para as tabelas
     public class AppDbContext : DbContext
     {
         // O DbSet é a representação da tabela das classes
-        public DbSet<Video> Videos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Video> Videos { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
 
         //Aqui estou setando a ConnectionString do banco de dados
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

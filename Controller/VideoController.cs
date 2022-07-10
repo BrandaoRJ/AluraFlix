@@ -1,6 +1,6 @@
-﻿using AluraFlix.Data;
-using AluraFlix.Models;
-using AluraFlix.ViewModels;
+﻿using AluraFlix.API.Data;
+using AluraFlix.API.Models;
+using AluraFlix.API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,19 +8,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AluraFlix.Controller
+namespace AluraFlix.API.Controller
 {
     [ApiController]
     public class VideoController : ControllerBase
     {
         [HttpGet("videos")]
-        public async Task<IActionResult> GetAsync([FromServices] AppDbContext context, [FromQuery] string search)
+        public async Task<IActionResult> GetAsync([FromServices] AppDbContext context, [FromQuery] string titulo)
         {
             IQueryable<Video> query = context.Videos.Include(x => x.Categoria);
 
-            if (search != null)
+            if (titulo != null)
             {
-                query = query.Where(video => video.Titulo.ToLower().Contains(search.ToLower()));
+                query = query.Where(video => video.Titulo.ToLower().Contains(titulo.ToLower()));
             }
 
             return Ok(query.ToList());

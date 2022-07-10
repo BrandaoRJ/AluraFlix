@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AluraFlix.ViewModels
+namespace AluraFlix.API.ViewModels
 {
     public class CreateVideoViewModel
     {

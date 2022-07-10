@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AluraFlix.Migrations
+namespace AluraFlix.API.Migrations
 {
     public partial class TabelaCategoria : Migration
     {

@@ -1,13 +1,13 @@
-﻿using AluraFlix.Data;
-using AluraFlix.Models;
-using AluraFlix.ViewModels;
+﻿using AluraFlix.API.Data;
+using AluraFlix.API.Models;
+using AluraFlix.API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AluraFlix.Controller
+namespace AluraFlix.API.Controller
 {
     [ApiController]
     public class CategoriaController : ControllerBase

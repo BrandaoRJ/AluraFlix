@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
-namespace AluraFlix.ViewModels
+namespace AluraFlix.API.ViewModels
 {
     public class CreateCategoriaViewModel
     {

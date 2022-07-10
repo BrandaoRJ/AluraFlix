@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 
-namespace AluraFlix.Models
+namespace AluraFlix.API.Models
 {
     public class Categoria
     {
